@@ -31,7 +31,7 @@ static void timeout_thread_function(bool *success, const char *testname, int tim
 	std::cerr << "/_/ /___/_/  /_/_____/\\____/\\____/ /_/    /_/   /_/  |_/___/_____/" << std::endl;
 	std::cerr << "                                                                  " << std::endl;
 	std::cerr << "FAILURE! Test \"" << testname << "\" exeeded timeout of " << timeout << " sec!" << std::endl;
-	system("killall saft-software-tr saftbusd");
+	system("killall saft-software-tr3 saftbusd");
 	exit(1);
 }
 
@@ -382,20 +382,20 @@ int main(int argc, char** argv) {
 			std::cerr << "run_server = " << run_server << std::endl;
 		} else if (argvi == "-h" || argvi == "--help") {
 			std::cout << "usage: " << argv[0] << " [-s] [-h] [<eb-device-name>]" << std::endl;
-			std::cout << "  <eb-device-name> optional, if it is missing, saft-software-tr will be started and used for the tests." << std::endl;
+			std::cout << "  <eb-device-name> optional, if it is missing, saft-software-tr3 will be started and used for the tests." << std::endl;
 			std::cout << "  -s               don\'t start saftbusd (useful if saftbusd is already running" << std::endl;
 			std::cout << "  -p               simulated device has polled MSIs (has no effect when used with -s)" << std::endl;
 			std::cout << "  -h               print this help" << std::endl;
 			std::cout << std::endl;
 			std::cout << "examples: " << std::endl;
-			std::cout << "  saft-testbech                    run the testbench, the program will start an instance of saft-software-tr and " << std::endl;
+			std::cout << "  saft-testbech                    run the testbench, the program will start an instance of saft-software-tr3 and " << std::endl;
 			std::cout << "                                   saftbusd and attach the simulated hardware" << std::endl;
 			std::cout << "  saft-testbech dev/ttyUSB0        run the testbench, the program will start an instance of and saftbusd and " << std::endl;
 			std::cout << "                                   attach dev/ttyUSB0" << std::endl;
 			std::cout << "  saft-testbech -s dev/ttyUSB0     run the testbench, an instance of saftbusd must already be running, the " << std::endl;
 			std::cout << "                                   programm will attach dev/ttyUSB0" << std::endl;
 			std::cout << "  saft-testbech -s                 run the testbench, an instance of saftbusd must already be running, the program" << std::endl; 
-			std::cout << "                                   will start an instance of saft-software-tr and will attach it to the running saftbusd" << std::endl;
+			std::cout << "                                   will start an instance of saft-software-tr3 and will attach it to the running saftbusd" << std::endl;
 			return 0;
 		} else if(argvi.size() > 4 && argvi.substr(0,4) == "dev/") {
 			eb_device_name = argvi;
@@ -405,10 +405,10 @@ int main(int argc, char** argv) {
 	bool run_software_tr = false;
 	if (eb_device_name.size() == 0) {
 		run_software_tr = true;
-		if (run_software_tr) system("killall -9 saft-software-tr");
+		if (run_software_tr) system("killall -9 saft-software-tr3");
 		if (run_software_tr) {
-			if (msi_polling) system("saft-software-tr -p &");
-			else             system("saft-software-tr    &");
+			if (msi_polling) system("saft-software-tr3 -p &");
+			else             system("saft-software-tr3    &");
 		}
 		usleep(10000);
 		std::ifstream eb_device_name_in("/tmp/simbridge-eb-device");
@@ -463,7 +463,7 @@ int main(int argc, char** argv) {
 	}
 
 
-	if (run_software_tr) system("killall saft-software-tr");
+	if (run_software_tr) system("killall saft-software-tr3");
 	// if (run_server)      system("saftbus-ctl --quit");
 	if (run_server)      system("killall -9 saftbusd");
 

@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/saftlib3
+
+Name: saftlib
+Description: Simplified API for Timing
+Requires: sigc++-2.0
+Version: @VERSION@
+Libs: -L${libdir} -lsaftbus -lsaft-proxy -lsaft-service -lz
+Cflags: -I${includedir} -I${includedir}/saftbus

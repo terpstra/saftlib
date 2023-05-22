@@ -1,5 +1,5 @@
-CXXFLAGS = --std=c++11 `pkg-config saftlib --cflags`
-LDFLAGS  = `pkg-config saftlib --libs`
+CXXFLAGS = --std=c++11 `pkg-config saftlib3 --cflags`
+LDFLAGS  = `pkg-config saftlib3 --libs`
 
 all: saft-snoop-saftbus saft-snoop-standalone
 saft-snoop-saftbus:    saft-snoop-saftbus.cpp

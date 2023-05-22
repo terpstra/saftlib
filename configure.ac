@@ -39,5 +39,5 @@ AC_SUBST([SAFTD_REVISION], REVISION)
 AC_SUBST([SAFTD_API], [$((SONAME+MINOR))]) dnl API incremented on every change
 AC_SUBST([SAFTD_SONAME], SONAME)
 
-AC_CONFIG_FILES([Makefile saftlib.pc saftbus.pc saftbus.service])
+AC_CONFIG_FILES([Makefile saftlib3.pc saftbus.service])
 AC_OUTPUT
